@@ -1,6 +1,7 @@
 package controller;
 
 import exceptions.PatientException;
+import junit.framework.TestCase;
 import model.Patient;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,9 +9,7 @@ import repository.Repository;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-
-public class DoctorControllerTest {
+public class DoctorControllerTest extends TestCase{
     private Repository repository;
     private DoctorController controller;
 
@@ -33,9 +32,14 @@ public class DoctorControllerTest {
         assertEquals(repository.getPatientList().size(), list.size() + 1);
     }
 
-    @Test(expected = PatientException.class)
+    @Test
     public void testAddPatientFails() throws PatientException {
+
         Patient patient = new Patient("", "", "adress1");
-        controller.addPatient(patient);
+        try{
+            controller.addPatient(patient);
+            fail();
+        }catch (PatientException e){
+        }
     }
 }
