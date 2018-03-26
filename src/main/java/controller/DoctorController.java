@@ -71,7 +71,6 @@ public class DoctorController {
 	public void addPatient(Patient p) throws PatientException {
 		if (p.getName() != null && p.getSSN() != null && p.getAddress() != null) {
 			PatientValidation.nameValidate(p.getName());
-            System.out.println(p.getSSN().length());
             PatientValidation.ssnValidate(p.getSSN());
 			PatientValidation.addressValidate(p.getAddress());
 		} else {

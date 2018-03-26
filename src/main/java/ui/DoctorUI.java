@@ -91,7 +91,6 @@ public class DoctorUI {
 		printMenu();
 		int cmd=in.nextInt();
 		in.nextLine();
-		//System.out.println(Integer.toString(c));
 		while(cmd!=0)
 		{
 			if(cmd==1)

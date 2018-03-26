@@ -4,7 +4,6 @@ import exceptions.PatientException;
 import junit.framework.TestCase;
 import model.Patient;
 import org.junit.Before;
-import org.junit.Test;
 import repository.Repository;
 
 import java.util.List;
@@ -22,7 +21,6 @@ public class DoctorControllerTest extends TestCase{
         repository.cleanFiles();
     }
 
-    @Test
     public void testAddPatient() throws PatientException {
         List<Patient> list = repository.getPatientList();
 
@@ -32,7 +30,6 @@ public class DoctorControllerTest extends TestCase{
         assertEquals(repository.getPatientList().size(), list.size() + 1);
     }
 
-    @Test
     public void testAddPatientFails() throws PatientException {
 
         Patient patient = new Patient("", "", "adress1");
