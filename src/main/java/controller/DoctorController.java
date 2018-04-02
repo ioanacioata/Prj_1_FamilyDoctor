@@ -41,7 +41,7 @@ public class DoctorController {
 
 	public int getPatientBySSN(String SSN) {
 		for (int i = 0; i < PatientList.size(); i++) {
-			if (PatientList.get(i).getSSN().equals(SSN))
+			if (PatientList.get(i).getSsn().equals(SSN))
 				return i;
 		}
 
@@ -69,9 +69,9 @@ public class DoctorController {
 
 	/** Others */
 	public void addPatient(Patient p) throws PatientException {
-		if (p.getName() != null && p.getSSN() != null && p.getAddress() != null) {
+		if (p.getName() != null && p.getSsn() != null && p.getAddress() != null) {
 			PatientValidation.nameValidate(p.getName());
-            PatientValidation.ssnValidate(p.getSSN());
+            PatientValidation.ssnValidate(p.getSsn());
 			PatientValidation.addressValidate(p.getAddress());
 		} else {
 			throw new PatientException("Null fields");
@@ -107,7 +107,7 @@ public class DoctorController {
 			Patient p = new Patient();
 			p = this.getPatientList().get(
 					this.getPatientBySSN(c.getPatientSSN()));
-			p.setConsNum(p.getConsNum() + 1);
+			p.setConsultationId(p.getConsultationId() + 1);
 		}
 		else {
 			throw new ConsultationException("invalid arguments");
@@ -132,8 +132,8 @@ public class DoctorController {
 					for (int j = 0; j < p.size(); j++) // verify patient was
 															// not already added
 					{
-						if (p.get(j).getSSN().equals(c.get(i).getPatientSSN())) {
-							chk = p.get(j).getConsNum();
+						if (p.get(j).getSsn().equals(c.get(i).getPatientSSN())) {
+							chk = p.get(j).getConsultationId();
 						}
 					}
 
@@ -154,7 +154,7 @@ public class DoctorController {
 
 			for (int i = 0; i < p.size(); i++)
 				for (int j = i + 1; j < p.size() - 1; j++)
-					if (p.get(j - 1).getConsNum() < p.get(j).getConsNum()) {
+					if (p.get(j - 1).getConsultationId() < p.get(j).getConsultationId()) {
 						paux = p.get(j - 1);
 						p.set(j - 1, p.get(j));
 						p.set(j, paux);

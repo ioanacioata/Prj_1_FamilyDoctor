@@ -96,13 +96,13 @@ public class DoctorUI {
 			if(cmd==1)
 			{
 				Patient p = null;
-				System.out.println("Enter CNP:");
-				String cnp = in.nextLine();				
+				System.out.println("Enter SSN:");
+				String ssn = in.nextLine();
 				System.out.println("Enter name:");
 				String name = in.nextLine();
 				System.out.println("Enter address:");
 				String address = in.nextLine();
-				p = new Patient(name,cnp, address); //todo new Patient(cnp,name , address); -invalid use of constructor
+				p = new Patient(ssn,name, address); //todo new Patient(name, cnp , address); -invalid use of constructor
 				try {
 					ctrl.addPatient(p);	
 				}
@@ -124,7 +124,9 @@ public class DoctorUI {
 				List<String> meds = RunMeds();
 				System.out.println("Date:");
 				String date = in.nextLine();
-//				c = new Consultation(consID, patientSSN, diag, meds, date);
+
+
+
 				try {
 					ctrl.addConsultation(consID, patientSSN, diag, meds, date);
 				} catch (ConsultationException e) {
