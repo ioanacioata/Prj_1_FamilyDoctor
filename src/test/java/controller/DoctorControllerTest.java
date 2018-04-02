@@ -29,7 +29,7 @@ public class DoctorControllerTest {
     }
 
     @Test
-    public void tc1_testAddPatient() throws PatientException {
+    public void testAddPatient() throws PatientException {
         List<Patient> list = repository.getPatientList();
 
         Patient patient = new Patient(SSN_VALID, NAME_VALID, ADDRESS_VALID);
