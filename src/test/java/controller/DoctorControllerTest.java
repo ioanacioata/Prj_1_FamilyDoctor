@@ -1,11 +1,13 @@
 package controller;
 
+import exceptions.ConsultationException;
 import exceptions.PatientException;
 import model.Patient;
 import org.junit.Before;
 import org.junit.Test;
 import repository.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -16,6 +18,8 @@ public class DoctorControllerTest {
     public static final String ADDRESS_VALID = "adress";
     public static final String VERY_LONG_STRING =
         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+    public static final String DIAG_VALID = "diag";
+    public static final String ID_CONSULTATION_VALID = "id1";
     private Repository repository;
     private DoctorController controller;
 
@@ -28,6 +32,18 @@ public class DoctorControllerTest {
         repository.cleanFiles();
     }
 
+        /*WBT*/
+    @Test(expected = ConsultationException.class)
+    public void tc1_wbt_testAddConsultation_null_meds() throws ConsultationException {
+        controller.addConsultation(ID_CONSULTATION_VALID,SSN_VALID, DIAG_VALID, null, "03-04-2018");
+    }
+
+    @Test(expected = ConsultationException.class)
+    public void tc2_wbt_testAddConsultation_other_null_fields() throws ConsultationException {
+        controller.addConsultation(null,null, null, new ArrayList<>(), null);
+    }
+
+        /*BBT*/
     @Test
     public void testAddPatient() throws PatientException {
         List<Patient> list = repository.getPatientList();
