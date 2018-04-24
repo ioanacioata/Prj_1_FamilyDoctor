@@ -59,7 +59,32 @@ public class Consultation {
 	public void setConsultation_date(String consultation_date) {
 		this.consultation_date = consultation_date;
 	}
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Consultation that = (Consultation) o;
+
+		if (consID != null ? !consID.equals(that.consID) : that.consID != null) return false;
+		if (PatientSSN != null ? !PatientSSN.equals(that.PatientSSN) : that.PatientSSN != null) return false;
+		if (diag != null ? !diag.equals(that.diag) : that.diag != null) return false;
+		if (meds != null ? !meds.equals(that.meds) : that.meds != null) return false;
+		return consultation_date != null ? consultation_date.equals(that.consultation_date) : that.consultation_date
+			== null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = consID != null ? consID.hashCode() : 0;
+		result = 31 * result + (PatientSSN != null ? PatientSSN.hashCode() : 0);
+		result = 31 * result + (diag != null ? diag.hashCode() : 0);
+		result = 31 * result + (meds != null ? meds.hashCode() : 0);
+		result = 31 * result + (consultation_date != null ? consultation_date.hashCode() : 0);
+		return result;
+	}
+
 	public String toString()
 	{
 		String res;
@@ -77,5 +102,7 @@ public class Consultation {
 		 return res;
 		
 	}
+
+
 
 }
