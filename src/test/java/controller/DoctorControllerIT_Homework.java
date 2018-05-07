@@ -14,13 +14,13 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class DoctorControllerIT {
-    public static final String SSN_VALID = "1982600000000";
-    public static final String NAME_VALID = "Ioana";
+public class DoctorControllerIT_Homework {
+    public static final String SSN_VALID = "2982600000000";
+    public static final String NAME_VALID = "Maria";
     public static final String ADDRESS_VALID = "adress";
-    public static final String DIAG_VALID = "diag";
-    public static final String DIAG_FILTER = "cancer";
-    public static final String DATE_VALID = "03-04-2018";
+    public static final String DIAG_VALID = "diagnosis";
+    public static final String DIAG_FILTER = "disease";
+    public static final String DATE_VALID = "07-05-2018";
     private Repository repository;
     private DoctorController controller;
     private ArrayList<String> meds;
@@ -42,7 +42,22 @@ public class DoctorControllerIT {
      */
 
     @Test
-    public void tci0_filter() throws PatientException, ConsultationException {
+    public void tci0_incremental_integration() throws PatientException, ConsultationException {
+        testAddPatient();
+        tci1_addPatientAndConsultation();
+        tci2_addPatientAndConsultationAndFilter();
+    }
+
+
+    @Test
+    public void tci1_addPatientAndConsultation() throws PatientException, ConsultationException {
+        repository.cleanFiles();
+        testAddPatient();
+        testAddConsultation();
+    }
+
+    @Test
+    public void tci2_addPatientAndConsultationAndFilter() throws PatientException, ConsultationException {
         repository.cleanFiles();
         testAddPatient();
         testAddConsultation();
@@ -59,8 +74,8 @@ public class DoctorControllerIT {
         initializeContextForConsultation();
 
         Consultation consultation = new Consultation(CONS_ID, patient.getSsn(), DIAG_VALID, meds, DATE_VALID);
+;
         //WHEN
-        System.out.println(controller.getPatientBySSN(patient.getSsn()));
         controller.addConsultation(consultation.getConsID(), consultation.getPatientSSN(), consultation.getDiag(),
             consultation.getMeds(), consultation.getConsultation_date());
 

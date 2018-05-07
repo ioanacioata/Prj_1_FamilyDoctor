@@ -109,7 +109,7 @@ public class DoctorController {
 
         for (Consultation c : consultationList) {                                                       /*6*/
             if (c.equals(consultation)) {                                                               /*7*/
-                throw new ConsultationException("This consultation already exists");                    /*8*/
+//                throw new ConsultationException("This consultation already exists");                    /*8*/
             }
         }
         consultationList.add(consultation);                                                             /*9*/
